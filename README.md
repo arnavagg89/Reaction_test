@@ -1,4 +1,50 @@
-# Reaction_test
 
-This is a fun reaction tester game made using jquery. 
-Random red boxes appear on the screen and the your reaction timer is displayed at the top.
+<html>
+<head>
+    <title> Reaction Test</title>
+    
+    <style type="text/css">
+        
+        #shape{
+            width: 50px;
+            height: 50px;
+            background-color: red;   
+            display: none;
+            position: relative;
+        }
+    </style>
+    
+</head>
+
+<body>
+    
+    <p> Your time: <span id="time"></span> </p>
+    <div id="shape"></div>
+    
+    <script type="text/javascript">
+    var start = new Date().getTime();
+        
+        function delay() {
+            setTimeout(display, Math.random() * 2000);
+            
+        }
+        
+        function display(){
+            document.getElementById("shape").style.display = "block";
+            document.getElementById("shape").style.top = (Math.random() * 700) + "px";
+            document.getElementById("shape").style.left = (Math.random() * 1300) + "px";
+            start = new Date().getTime();
+        }
+        
+        delay();
+        document.getElementById("shape").onclick = function() {
+            var end = new Date().getTime();
+            var timediff = (end - start)/1000;
+            document.getElementById("time").innerHTML = timediff + "s";
+            document.getElementById("shape").style.display = "none";
+            delay();
+        }
+    </script>
+    
+</body>
+</html>
